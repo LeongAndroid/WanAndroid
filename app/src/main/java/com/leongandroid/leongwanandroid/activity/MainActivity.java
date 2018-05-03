@@ -17,7 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.leongandroid.leongwanandroid.R;
+import com.leongandroid.leongwanandroid.app.LeongWanAndroidApplication;
 import com.leongandroid.leongwanandroid.base.BaseActivity;
+import com.leongandroid.wanandroidsdk.WanAndroid;
+import com.leongandroid.wanandroidsdk.login.bean.LoginBean;
+
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -94,6 +98,25 @@ public class MainActivity extends BaseActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (WanAndroid.getInstance().isLogin()) {
+            LoginBean bean = ((LeongWanAndroidApplication)getApplication()).getDataCache().getData("Login");
+            if (bean != null) {
+                String name = bean.getData().getUsername();
+                mLoginTextView.setText(name);
+            }
+        }else {
+            mLoginTextView.setText("未登录");
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

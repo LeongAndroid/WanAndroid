@@ -44,7 +44,7 @@ public class LoginBean implements Serializable {
         this.errorMsg = errorMsg;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * collectIds : [2887,2886,2871,2870,2885,2884]
          * email :

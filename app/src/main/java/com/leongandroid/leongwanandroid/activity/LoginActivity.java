@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.leongandroid.leongwanandroid.R;
+import com.leongandroid.leongwanandroid.app.LeongWanAndroidApplication;
 import com.leongandroid.leongwanandroid.base.BaseActivity;
 import com.leongandroid.wanandroidsdk.login.bean.LoginBean;
 import com.leongandroid.wanandroidsdk.login.event.LoginEvent;
@@ -37,7 +38,7 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View v) {
                 String name = mUserName.getText().toString();
                 String pwd = mPassWd.getText().toString();
-                mWanAndroid.login(mUserName.getText().toString(), mPassWd.getText().toString());
+                mWanAndroid.login(name, pwd);
             }
         });
     }
@@ -45,13 +46,13 @@ public class LoginActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLogin(LoginEvent event) {
         LoginBean mBean = event.getBean();
-        if (mBean == null || mBean.getErrorCode() < 0) {
+        if (mBean == null) {
             Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_LONG).show();
         }else {
+            ((LeongWanAndroidApplication)getApplication()).getDataCache().saveData("Login", mBean);
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
             finish();
         }
-
     }
 
 

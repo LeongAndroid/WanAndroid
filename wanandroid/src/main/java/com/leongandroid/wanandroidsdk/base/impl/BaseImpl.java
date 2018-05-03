@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.leongandroid.wanandroidsdk.base.cookie.CookiesManager;
+import com.leongandroid.wanandroidsdk.utils.CacheUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -25,10 +26,12 @@ public class BaseImpl<Service> {
     public static final String BASE_URL = "http://www.wanandroid.com/";
     private static Retrofit mRetrofit;
     protected Service mService;
+    protected CacheUtil mCacheUtil;
 
     public BaseImpl(@NonNull Context context) {
         initRetrofit(context);
         this.mService = mRetrofit.create(getServiceClass());;
+        mCacheUtil = new CacheUtil(context.getApplicationContext());
     }
     private void initRetrofit(Context context) {
         if (null != mRetrofit) {

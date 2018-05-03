@@ -2,6 +2,7 @@ package com.leongandroid.leongwanandroid.app;
 
 import android.app.Application;
 
+import com.leongandroid.leongwanandroid.cache.DataCache;
 import com.leongandroid.wanandroidsdk.WanAndroid;
 
 /**
@@ -10,12 +11,17 @@ import com.leongandroid.wanandroidsdk.WanAndroid;
 
 public class LeongWanAndroidApplication extends Application {
 
+    private DataCache mDataCache;
     @Override
     public void onCreate() {
         super.onCreate();
+        mDataCache = new DataCache(getApplicationContext());
         WanAndroid.init(getApplicationContext());
     }
 
+    public DataCache getDataCache() {
+        return mDataCache;
+    }
 
     @Override
     public void onTerminate() {
