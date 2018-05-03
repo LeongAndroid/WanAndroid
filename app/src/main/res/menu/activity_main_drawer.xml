@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home_page"
+            android:icon="@drawable/ic_menu_home"
+            android:title="主页" />
+        <item
+            android:id="@+id/nav_knowledge"
+            android:icon="@drawable/ic_menu_knowledge"
+            android:title="体系" />
+        <item
+            android:id="@+id/nav_navigation"
+            android:icon="@drawable/ic_menu_navigation"
+            android:title="导航" />
+        <item
+            android:id="@+id/nav_project"
+            android:icon="@drawable/ic_menu_project"
+            android:title="项目" />
+    </group>
+
+    <item android:title="交流">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
+                android:title="关于我们" />
+        </menu>
+    </item>
+
+</menu>
